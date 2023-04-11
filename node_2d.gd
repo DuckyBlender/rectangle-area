@@ -43,7 +43,7 @@ func _process(delta):
 	# Calculate the area
 	var area = rect.scale.x * rect.scale.y
 	
-	print("x: " + str(rect.scale.x) + " y: " + str(rect.scale.y))
+	#print("x: " + str(rect.scale.x) + " y: " + str(rect.scale.y))
 	
 	# Update the label text
 	label.text = "Area: " + str(abs(snapped(area * 1000, 0.01)))
