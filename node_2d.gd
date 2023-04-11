@@ -8,7 +8,7 @@ var vslider
 var hslider
 
 var PRESSED
-var last_values = Vector2(0, 0)
+var last_value = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,24 +26,27 @@ func _process(delta):
 	# Check if the button is pressed
 	if PRESSED:
 		# Get the last values and increment 0.1 to the sin
-		last_values += Vector2(0.01, 0.01)
-		var sin_values = Vector2(sin(last_values.x), sin(last_values.y - last_values.x))
-		rect.set_scale(abs(sin_values))
-		hslider.value = rect.scale.x * 100
-		vslider.value = rect.scale.y * 100
+		last_value += 0.01
+		# We need to invert one axis to make the origin the bottom left corner, +1/2 to make it 0-1
+		var slider_value = (sin(last_value) + 1) * 100 / 2
+		hslider.value = slider_value
+		rect.set_scale(Vector2(hslider.value / 100, -vslider.value / 100))
 	else:
 		# Set the rectangle to the sliders
-		var new_scale = Vector2(hslider.value / 100, vslider.value / 100)
+		# We need to invert one axis to make the origin the bottom left corner
+		
+		var new_scale = Vector2(hslider.value / 100, -vslider.value / 100)
 		rect.set_scale(new_scale)
 		
 	
 	
 	# Calculate the area
 	var area = rect.scale.x * rect.scale.y
-	#print(str(area) + " = " + str(rect.scale.x) + " + " + str(rect.scale.y))
+	
+	print("x: " + str(rect.scale.x) + " y: " + str(rect.scale.y))
 	
 	# Update the label text
-	label.text = "Area: " + str(snapped(area * 100, 0.01))
+	label.text = "Area: " + str(abs(snapped(area * 1000, 0.01)))
 
 	pass
 
