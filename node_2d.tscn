@@ -15,13 +15,18 @@ offset_bottom = 410.0
 color = Color(0.47451, 0.505882, 0, 1)
 
 [node name="RectAreaText" type="RichTextLabel" parent="."]
-offset_left = 382.0
-offset_top = 110.0
-offset_right = 709.0
-offset_bottom = 181.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 463.0
+offset_top = 129.0
+offset_right = 746.0
+offset_bottom = 200.0
+grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Placeholder text"
+theme_override_font_sizes/normal_font_size = 40
+text = "Area"
 autowrap_mode = 1
 
 [node name="CheckButton" type="CheckButton" parent="."]
@@ -82,5 +87,7 @@ offset_bottom = 47.0
 text = "0/100"
 
 [connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="value_changed" from="VSliderGroup/VSlider" to="." method="_on_v_slider_value_changed"]
 [connection signal="value_changed" from="VSliderGroup/VSlider" to="VSliderGroup" method="_on_v_slider_value_changed"]
+[connection signal="value_changed" from="HSliderGroup/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="HSliderGroup/HSlider" to="HSliderGroup" method="_on_h_slider_value_changed"]
