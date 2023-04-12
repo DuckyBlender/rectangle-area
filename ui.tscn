@@ -1,0 +1,143 @@
+[gd_scene load_steps=4 format=3 uid="uid://dngv0a4dv124l"]
+
+[ext_resource type="Script" path="res://ui.gd" id="1_yg0yj"]
+[ext_resource type="Script" path="res://VSliderGroup.gd" id="2_e7otv"]
+[ext_resource type="Script" path="res://HSliderGroup.gd" id="3_dwj6m"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yg0yj")
+
+[node name="AreaText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.0
+offset_top = 31.0
+offset_right = 101.0
+offset_bottom = 111.0
+grow_horizontal = 2
+theme_type_variation = &"HeaderLarge"
+text = "Area 250"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Rectangle" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.432
+anchor_top = 0.591
+anchor_right = 0.432
+anchor_bottom = 0.591
+offset_left = 0.335999
+offset_top = 0.0319824
+offset_right = 138.336
+offset_bottom = 114.032
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.576471, 0.137255, 1)
+
+[node name="CheckButton" type="CheckButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -85.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Auto"
+
+[node name="VSliderGroup" type="ReferenceRect" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -93.0
+offset_right = 64.0
+offset_bottom = 73.0
+grow_vertical = 2
+border_width = 1.9
+script = ExtResource("2_e7otv")
+
+[node name="VSlider" type="VSlider" parent="VSliderGroup"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -13.0
+offset_top = -134.0
+offset_right = 13.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 50.0
+rounded = true
+
+[node name="VSliderText" type="Label" parent="VSliderGroup"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -26.0
+offset_right = 26.0
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "50/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSliderGroup" type="ReferenceRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -195.0
+offset_top = -55.0
+offset_right = 195.0
+grow_horizontal = 2
+grow_vertical = 0
+border_width = 1.7
+script = ExtResource("3_dwj6m")
+
+[node name="HSlider" type="HSlider" parent="HSliderGroup"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -171.0
+offset_top = -20.0
+offset_right = 171.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 50.0
+rounded = true
+
+[node name="HSliderText" type="Label" parent="HSliderGroup"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.5
+offset_right = 32.5
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "50/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="value_changed" from="VSliderGroup/VSlider" to="." method="_on_v_slider_value_changed"]
+[connection signal="value_changed" from="VSliderGroup/VSlider" to="VSliderGroup" method="_on_v_slider_value_changed"]
+[connection signal="value_changed" from="HSliderGroup/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="HSliderGroup/HSlider" to="HSliderGroup" method="_on_h_slider_value_changed"]
