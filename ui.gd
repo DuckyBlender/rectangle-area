@@ -41,8 +41,8 @@ func _process(delta):
 	
 	# Calculate the area
 	var area = rect.scale.x * rect.scale.y
-	area = abs(snapped(area * 1000, 0.01))
-	if area <= 0.01:
+	area = abs(snapped(area * 10000, 0.01))
+	if area <= 0.1:
 		area = 0
 	
 	# Update the label text
